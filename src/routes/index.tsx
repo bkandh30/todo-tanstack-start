@@ -1,6 +1,14 @@
 import { Badge } from '@/components/ui/badge'
 import { Button } from '@/components/ui/button'
-import { PlusIcon } from 'lucide-react'
+import { ListTodoIcon, PlusIcon } from 'lucide-react'
+import {
+  Empty,
+  EmptyContent,
+  EmptyDescription,
+  EmptyHeader,
+  EmptyMedia,
+  EmptyTitle,
+} from '@/components/ui/empty'
 import { db } from '@/db'
 import { createFileRoute, Link } from '@tanstack/react-router'
 import { createServerFn } from '@tanstack/react-start'
@@ -41,7 +49,40 @@ function App() {
             </Link>
           </Button>
         </div>
+        <TodoListTable todos={todos} />
       </div>
     </div>
   )
+}
+
+function TodoListTable({
+  todos,
+}: {
+  todos: Array<{
+    id: string
+    name: string
+    isComplete: boolean
+    createdAt: Date
+  }>
+}) {
+  if (todos.length === 0) {
+    return (
+      <Empty className="border border-dashed">
+        <EmptyHeader>
+          <EmptyMedia variant="icon">
+            <ListTodoIcon />
+          </EmptyMedia>
+          <EmptyTitle>No Todos</EmptyTitle>
+          <EmptyDescription>Try adding a new todo</EmptyDescription>
+        </EmptyHeader>
+        <EmptyContent>
+          <Button asChild>
+            <Link to="/todos/new">
+              <PlusIcon /> Add Todo
+            </Link>
+          </Button>
+        </EmptyContent>
+      </Empty>
+    )
+  }
 }
