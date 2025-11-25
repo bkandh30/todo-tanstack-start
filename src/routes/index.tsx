@@ -1,5 +1,8 @@
+import { Badge } from '@/components/ui/badge'
+import { Button } from '@/components/ui/button'
+import { PlusIcon } from 'lucide-react'
 import { db } from '@/db'
-import { createFileRoute } from '@tanstack/react-router'
+import { createFileRoute, Link } from '@tanstack/react-router'
 import { createServerFn } from '@tanstack/react-start'
 
 const serverLoader = createServerFn({ method: 'GET' }).handler(() => {
@@ -29,6 +32,14 @@ function App() {
               {completedCount} of {totalCount} completed
             </Badge>
           )}
+        </div>
+        <div>
+          <Button size="sm" asChild>
+            <Link to="/todos/new">
+              <PlusIcon />
+              Add Todo
+            </Link>
+          </Button>
         </div>
       </div>
     </div>
