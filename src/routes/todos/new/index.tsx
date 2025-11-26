@@ -1,4 +1,4 @@
-// import { TodoForm } from '@/components/todo-form'
+import { TodoForm } from '@/components/todo-form'
 import { Button } from '@/components/ui/button'
 import {
   Card,
@@ -34,7 +34,9 @@ function RouteComponent() {
             Create a new task to add to your todo list
           </CardDescription>
         </CardHeader>
-        <CardContent>{/* <TodoForm /> */}</CardContent>
+        <CardContent>
+          <TodoForm />
+        </CardContent>
       </Card>
     </div>
   )
