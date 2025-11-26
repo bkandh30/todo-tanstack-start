@@ -47,7 +47,7 @@ function App() {
   const totalCount = todos.length
 
   return (
-    <div className="min-h-screen container space-y-8">
+    <div className="min-h-screen container py-8 space-y-8">
       <div className="flex justify-between items-center gap-4">
         <div className="space-y-2">
           <h1 className="text-4xl font-bold">Todo List</h1>
@@ -66,8 +66,8 @@ function App() {
             </Link>
           </Button>
         </div>
-        <TodoListTable todos={todos} />
       </div>
+      <TodoListTable todos={todos} />
     </div>
   )
 }
@@ -106,12 +106,12 @@ function TodoListTable({
   return (
     <Table>
       <TableHeader>
-        <Table className="hover:bg-transparent">
+        <TableRow className="hover:bg-transparent">
           <TableHead></TableHead>
           <TableHead>Task</TableHead>
           <TableHead>Created On</TableHead>
           <TableHead className="w-0"></TableHead>
-        </Table>
+        </TableRow>
       </TableHeader>
       <TableBody>
         {todos.map((todo) => (
@@ -164,6 +164,7 @@ function TodoTableRow({
 
   return (
     <TableRow
+      className="cursor-pointer"
       onClick={(e) => {
         const target = e.target as HTMLElement
         if (target.closest('[data-actions]')) return
